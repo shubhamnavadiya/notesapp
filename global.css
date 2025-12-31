@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-background: 249 250 251;
+        /* Gray 50 */
+        --color-surface: 255 255 255;
+        /* White */
+        --color-text-primary: 17 24 39;
+        /* Gray 900 */
+        --color-text-secondary: 107 114 128;
+        /* Gray 500 */
+        --color-text-light: 156 163 175;
+        /* Gray 400 */
+
+        --color-primary: 79 70 229;
+        /* Indigo 600 */
+        --color-primary-dark: 67 56 202;
+        /* Indigo 700 */
+        --color-primary-light: 129 140 248;
+        /* Indigo 400 */
+
+        --color-border: 229 231 235;
+        /* Gray 200 */
+    }
+
+    .dark {
+        --color-background: 17 24 39;
+        /* Gray 900 */
+        --color-surface: 31 41 55;
+        /* Gray 800 */
+        --color-text-primary: 249 250 251;
+        /* Gray 50 */
+        --color-text-secondary: 209 213 219;
+        /* Gray 300 */
+        --color-text-light: 156 163 175;
+        /* Gray 400 */
+
+        --color-primary: 99 102 241;
+        /* Indigo 500 */
+        --color-primary-dark: 79 70 229;
+        /* Indigo 600 */
+        --color-primary-light: 129 140 248;
+        /* Indigo 400 */
+
+        --color-border: 55 65 81;
+        /* Gray 700 */
+    }
+}
