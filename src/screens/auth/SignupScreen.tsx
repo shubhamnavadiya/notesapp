@@ -78,7 +78,12 @@ export default function SignupScreen({ navigation }: Props) {
 
     try {
       await dispatch(signUp({ email, password })).unwrap();
-    } catch (err: any) { }
+    } catch (err: any) {
+      const errorMessage = err.message || err.toString();
+      if (errorMessage.includes("Network request failed") || errorMessage.includes("connection") || errorMessage.includes("offline")) {
+        Alert.alert("Offline", "You seem to be offline. Check your internet connection.");
+      }
+    }
   }
 
   const handleChange = (field: keyof typeof errors, value: string) => {

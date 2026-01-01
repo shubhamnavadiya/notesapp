@@ -70,7 +70,18 @@ export default function HomeScreen({ navigation }: Props) {
       {
         text: "Delete",
         style: "destructive",
-        onPress: () => dispatch(deleteNote(id)),
+        onPress: async () => {
+          try {
+            await dispatch(deleteNote(id)).unwrap();
+          } catch (error: any) {
+            const errorMessage = error.message || error || "Failed to delete";
+            if (errorMessage.toString().includes("Network request failed") || errorMessage.toString().includes("connection")) {
+              Alert.alert("Offline", "You seem to be offline. Check your internet connection.");
+            } else {
+              Alert.alert("Error", "Could not delete note");
+            }
+          }
+        },
       },
     ]);
   };
@@ -174,7 +185,7 @@ export default function HomeScreen({ navigation }: Props) {
               Something went wrong
             </Text>
             <Text className="text-gray-500 dark:text-gray-400 text-center mb-6">
-              {error === "Network request failed"
+              {error === "TypeError: Network request failed"
                 ? "You seem to be offline. Check your internet connection."
                 : error}
             </Text>

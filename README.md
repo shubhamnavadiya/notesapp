@@ -39,6 +39,17 @@ This is a technical assignment submission for a React Native + Supabase Notes Ap
    - Press `a` for Android Emulator (must be running).
    - Or scan QR code with Expo Go.
 
+## Authentication Setup (Crucial)
+
+To ensure the signup flow works immediately without email verification (for testing purposes), you **MUST** disable email confirmations in Supabase:
+
+1. Go to your Supabase Dashboard.
+2. Navigate to **Authentication** > **Providers** > **Email**.
+3. **Disable** "Confirm email".
+4. Value should be: `Confirm email` -> **OFF**.
+
+*If this is not disabled, new users will not be able to log in immediately after signup.*
+
 ## Supabase Schema
 
 You **MUST** run the following SQL in your Supabase SQL Editor to set up the database:
@@ -102,5 +113,6 @@ To generate an APK (if not using EAS Build cloud service):
 - **State Management**: Used **Redux Toolkit** to handle Auth session and Notes data globally. This ensures robust state synchronization across screens.
 - **Form Handling**: Implemented custom inline validation state for immediate user feedback.
 - **Offline Handling**: While **Option B (Search)** was chosen as the primary feature, the app implements graceful error handling. A dedicated error screen with a "Try Again" action is displayed when notes cannot be fetched (e.g., offline), ensuring the app remains stable and user-friendly.
+- **Authentication**: Email verification is disabled to allow instant access for testing/demo purposes, though production apps should typically enable it.
 
 

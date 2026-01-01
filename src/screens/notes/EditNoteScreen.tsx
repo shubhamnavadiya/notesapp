@@ -90,7 +90,12 @@ export default function EditNoteScreen({ navigation, route }: Props) {
       }
       navigation.goBack();
     } catch (error: any) {
-      Alert.alert("Error", error);
+      const errorMessage = error.message || error.toString();
+      if (errorMessage.includes("Network request failed") || errorMessage.includes("connection") || errorMessage.includes("offline")) {
+        Alert.alert("Offline", "You seem to be offline. Check your internet connection.");
+      } else {
+        Alert.alert("Error", errorMessage);
+      }
     } finally {
       setLoading(false);
     }

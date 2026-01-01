@@ -61,7 +61,16 @@ export default function LoginScreen({ navigation }: Props) {
 
     try {
       await dispatch(signIn({ email, password })).unwrap();
-    } catch (err: any) { }
+    } catch (err: any) {
+      const errorMessage = err.message || err.toString();
+      if (errorMessage.includes("Network request failed") || errorMessage.includes("connection") || errorMessage.includes("offline")) {
+        Alert.alert("Offline", "You seem to be offline. Check your internet connection.");
+      } else {
+        // Redux auth slice already handles displaying most auth errors, but we can add a fallback here if needed
+        // or just let the user see the visual error state if we had one.
+        // For now, let's keep it consistent with other screens if it's a critical failure not handled by UI state.
+      }
+    }
   }
 
   const handleEmailChange = (text: string) => {
